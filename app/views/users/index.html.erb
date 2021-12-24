@@ -1,7 +1,32 @@
-<h1>Users#index</h1>
-<% @users.each do |user| %>
-  <%= user.email %><br/>
-<% end %>
+<h1>All Users</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Registration Status</th>
+        <tr>
+    </thead>
+
+    <tbody>
+        <% @users.each do |user| %>
+                <tr>
+                    <td><%= user.name %></td>
+                    <td><%= user.email %></td>
+                    <td><%= user.status %></td>
+                    <td><%= link_to 'Show', user_path(user) %></td>
+                    <td><%= link_to 'Edit', edit_user_path(user) %></td>
+                    <td><%= link_to 'Delete', user_path(user), method: :delete, data: {confirm: "Are you sure?"}  %></td>
+                <tr>
+        <% end %>
+        <%= current_user.email %>
+    <tbody>
+</table>
+
+<%= link_to "Add User", new_user_path%>
+<%= link_to "Logout", destroy_user_session_path, method: :delete %>
+
+
 
 
 
