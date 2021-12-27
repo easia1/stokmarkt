@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 2021_12_14_081241) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "admin", default: false
     t.string "name"
-    t.string "status", default: "pending"
+    t.string "status"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
