@@ -7,4 +7,9 @@ class UserPreview < ActionMailer::Preview
     UserMailer.account_created(@user)
   end
 
+  def account_admin_created
+    @user = User.new(name: 'Mail Test', email: 'Testemail123@testsing.com')
+    UserMailer.account_admin_created(@user)
+  end
+
 end
