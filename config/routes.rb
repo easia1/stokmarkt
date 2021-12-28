@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
   
   resources :users
-
-  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => 'logout', :sign_up => "register" },   :controllers => { registrations: 'users/registrations' }
+  devise_for :users, :path => '', :path_names => { :sign_in => "login", :sign_out => "logout", :sign_up => "register" },
+  :controllers => { registrations: 'users/registrations' }
 
   authenticated do
     root :to => 'dashboards#index', as: :authenticated
