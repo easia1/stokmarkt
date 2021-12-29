@@ -42,6 +42,9 @@ class UsersController < ApplicationController
     @user.destroy
     redirect_to users_path
   end
+
+  def my_portfolio
+  end
   
   private
   def user_params
