@@ -16,19 +16,39 @@ require('channels');
 // const imagePath = (name) => images(name, true)
 
 document.addEventListener('DOMContentLoaded', function (event) {
-    const showNavbar = (toggleId, navId, bodyId, headerId) => {
-        const toggle = document.getElementById(toggleId),
+    const showNavbar = (
+        toggleIdSide,
+        toggleIdHeader,
+        navId,
+        bodyId,
+        headerId
+    ) => {
+        const toggleSide = document.getElementById(toggleIdSide),
+            toggleHeader = document.getElementById(toggleIdHeader),
             nav = document.getElementById(navId),
             bodypd = document.getElementById(bodyId),
             headerpd = document.getElementById(headerId);
 
         // Validate that all variables exist
-        if (toggle && nav && bodypd && headerpd) {
-            toggle.addEventListener('click', () => {
+        if (toggleSide && toggleHeader && nav && bodypd && headerpd) {
+            toggleSide.addEventListener('click', () => {
                 // show navbar
                 nav.classList.toggle('show');
                 // change icon
-                toggle.classList.toggle('bx-x');
+                toggleSide.classList.toggle('bx-x');
+                toggleHeader.classList.toggle('bx-x');
+                // add padding to body
+                bodypd.classList.toggle('body-pd');
+                // add padding to header
+                headerpd.classList.toggle('body-pd');
+            });
+
+            toggleHeader.addEventListener('click', () => {
+                // show navbar
+                nav.classList.toggle('show');
+                // change icon
+                toggleSide.classList.toggle('bx-x');
+                toggleHeader.classList.toggle('bx-x');
                 // add padding to body
                 bodypd.classList.toggle('body-pd');
                 // add padding to header
@@ -37,7 +57,13 @@ document.addEventListener('DOMContentLoaded', function (event) {
         }
     };
 
-    showNavbar('header-toggle', 'nav-bar', 'body-pd', 'header');
+    showNavbar(
+        'header-toggle-side',
+        'header-toggle-header',
+        'nav-bar',
+        'body-pd',
+        'header'
+    );
 
     /*===== LINK ACTIVE =====*/
     const linkColor = document.querySelectorAll('.nav_link');
