@@ -1,8 +1,26 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<%# <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand">Stock app</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     
-</nav>
+</nav> %>
+
+<div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+        
+            <div> <div class="header_toggle nav_logo"> <i class='bx bx-menu' id="header-toggle-side"></i> </div>
+            <%= link_to root_path, class: "nav_logo" do%> <i class='bx bx-line-chart nav_logo-icon'></i> <span class="nav_logo-name">Stock App</span> <% end %>
+                <div class="nav_list"> 
+                    <a href="#" class="nav_link active"> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-user nav_icon'></i> <span class="nav_name">Users</span> </a> 
+                    <%# <a href="#" class="nav_link"> <i class='bx bx-message-square-detail nav_icon'></i> <span class="nav_name">Messages</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-bookmark nav_icon'></i> <span class="nav_name">Bookmark</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-folder nav_icon'></i> <span class="nav_name">Files</span> </a> 
+                    <a href="#" class="nav_link"> <i class='bx bx-bar-chart-alt-2 nav_icon'></i> <span class="nav_name">Stats</span> </a>  %>
+                </div>
+            </div> 
+            <%= link_to destroy_user_session_path, method: :delete , class: "nav_link" do %><i class='bx bx-log-out nav_icon'></i> <span class="nav_name">Log Out</span><% end %>
+        </nav>
+    </div>

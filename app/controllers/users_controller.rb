@@ -35,12 +35,25 @@ class UsersController < ApplicationController
     else
       render :edit
     end
+
   end
+
+
 
   def destroy
     @user = User.find(params[:id])
     @user.destroy
     redirect_to users_path
+  end
+
+  #! change function
+  def change_status
+      @user = User.find(params[:id])
+      @user.update(status: params[:status])
+      if params[:status] == 'approved'
+        UserMailer.account_approved(@user).deliver_later
+      end
+      redirect_to root_path
   end
   
   private

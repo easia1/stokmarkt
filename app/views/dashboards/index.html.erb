@@ -1,3 +1,11 @@
 <h1>User dashboard</h1>
 
+<% if current_user.status == 'pending' %>
+    <p>pending pa</p>
+<% elsif current_user.status == 'approved' %>
+    <p>approved na</p>
+<% else %>
+    <p> Your account has been rejected. Please log out and try registering again using a different email. </p>
+<% end %>
+
 <%= link_to "Logout", destroy_user_session_path, method: :delete %>
