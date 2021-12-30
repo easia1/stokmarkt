@@ -1,0 +1,14 @@
+<header class="header" id="header">
+<%#= link_to root_path, class: "nav_logo" do%> <%#i class='bx bx-line-chart nav_logo-icon'></i> <span class="nav_logo-name">Stock App</span> <% end %>
+        <% if current_user %>
+            <p class="header_text"><%= current_user.email %></p>
+            <div class="header_toggle header_toggle-header"> <i class='bx bx-menu' id="header-toggle-header"></i> </div>
+            <%# %= link_to "Logout", destroy_user_session_path, method: :delete %>
+            
+        <% else %>
+            <div>
+                <%= link_to "Login", new_user_session_path %>
+                <%= link_to "Sign Up", new_user_registration_path %>
+            </div>
+        <% end %>
+</header>

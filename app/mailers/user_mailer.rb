@@ -33,4 +33,13 @@ class UserMailer < ApplicationMailer
       subject: 'Your email has been used to register'
     )
   end
+
+  def account_approved(user)
+    @user = user
+
+    mail(
+      to: @user.email,
+      subject: 'Your account has been approved'
+    )
+  end
 end
