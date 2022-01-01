@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
+  before_action :restrict_action
 
   def index
     @users = User.all
@@ -62,8 +63,13 @@ class UsersController < ApplicationController
   
   
   private
+
+  def restrict_action
+    redirect_to root_path unless current_user.admin? 
+  end
+
   def user_params
-      params.require(:user).permit(:email, :name, :password, :status)
+      params.require(:user).permit(:email, :name, :password, :status, :balance)
   end
 
 end

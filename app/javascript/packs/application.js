@@ -15,7 +15,7 @@ require('channels');
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
 
-document.addEventListener('DOMContentLoaded', function (event) {
+document.addEventListener('turbolinks:load', function (event) {
     const showNavbar = (
         toggleIdSide,
         toggleIdHeader,
@@ -78,5 +78,3 @@ document.addEventListener('DOMContentLoaded', function (event) {
 
     // Your code to run since DOM is loaded and ready
 });
-
-console.log('hello');
