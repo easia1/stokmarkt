@@ -21,4 +21,8 @@ class StocksController < ApplicationController
 		end
 	end
 
+	def buy_stock
+		@stock = Stock.new_lookup(params[:stock_ticker])
+	end
+
 end

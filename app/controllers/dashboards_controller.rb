@@ -4,4 +4,5 @@ class DashboardsController < ApplicationController
         redirect_to users_path if current_user.admin?
     end
 
+
 end
