@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   patch 'users/:id/change_status' => 'users#change_status', as: :change_status_user
 
   post 'dashboards/add_balance'
+  get '/pending' => 'users#pending', as: :pending_users
+  get '/rejected' => 'users#rejected', as: :rejected_users
 end

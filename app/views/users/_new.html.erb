@@ -1,0 +1,41 @@
+
+<div class="modal-header">
+<h4 class="modal-title" id="myModalLabel">Add User</h4>
+  <button type="button" class="close" data-dismiss="modal">x</button>
+  
+</div>
+<div class="modal-body">
+    <div class="form-container form-group">
+        <%= render partial: "devise/shared/signup_form", :locals => { :resource => @user } %>
+        <% if false %> 
+            <%= form_for @user, url: create_user_path do |f| %>
+            <%= render "users/shared/error_messages", resource: @user %>
+
+            <p>
+                <%= f.label :name%><br/>
+                <%= f.text_field :name, class: "form-control" %>
+            </p>
+
+            <p>
+                <%= f.label :email %><br/>
+                <%= f.text_field :email, class: "form-control" %>
+            </p>
+
+            <p>
+                <%= f.label :password %><br/>
+                <%= f.password_field :password, class: "form-control" %>
+            </p>
+
+            <p>
+                <%= f.label :password_confirmation %><br />
+                <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control" %>
+            </p>
+            <p>
+                <%= f.submit "Create User", class: "btn btn-block btn-primary" %>
+            </p>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+
+

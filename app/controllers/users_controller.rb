@@ -3,8 +3,17 @@ class UsersController < ApplicationController
   before_action :authenticate_user!
   before_action :restrict_action
 
+
   def index
-    @users = User.all
+    @users = User.all.order('status')
+  end
+
+  def pending
+    @users = User.all.where(:admin => false, :status => 'pending')
+  end
+
+  def rejected
+    @users = User.all.where(:admin => false, :status => 'rejected')
   end
 
   def show
@@ -13,15 +22,24 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def create
     @user = User.new(user_params)
-    if @user.save
-      UserMailer.account_admin_created(@user).deliver_later
-      redirect_to user_path(@user)
-    else
-      render :new
+    respond_to do |format|  
+      if @user.save
+        UserMailer.account_admin_created(@user).deliver_later
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
+        format.json { render :show, status: :created, location: @user }
+      else
+        # render :new
+        format.html { render :partial => 'users/new', status: :unprocessable_entity }
+        format.json { render json: @user.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -58,7 +76,7 @@ class UsersController < ApplicationController
     if params[:status] == 'approved'
       UserMailer.account_approved(@user).deliver_later
     end
-    redirect_to root_path
+    redirect_to params[:path]
   end
   
   

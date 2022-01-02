@@ -1,6 +1,9 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
-
-
-<%= link_to "Login", new_user_session_path %>
-<%= link_to "Sign Up", new_user_registration_path %>
+<div class="jumbotron jumbotron-fluid hero-home">
+  <div class="container hero-container">
+    <h1 class="display-4">Trade with confidence</h1>
+    <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in aliquam tellus. Cras venenatis dolor eget felis fringilla ultricies. In sit amet imperdiet enim, eget viverra est. Donec id sollicitudin purus. Quisque id tincidunt nibh. </p>
+    <br>
+    <%= link_to  "Get Started", new_user_registration_path, class: "btn btn-success" %>
+  </div>
+  <%= image_tag('hero.svg', class: "hero-logo")%>
+</div>

@@ -17,7 +17,7 @@
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body id="body-pd">
+  <body id="<%= current_user ? 'body-pd' : '' %>" class="<%= current_user ? 'body-class' : '' %>">
   <%= render 'shared/topbar' %>
   <% if current_user %>
     <%= render 'shared/navbar' %>
