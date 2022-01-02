@@ -22,15 +22,15 @@
   <% if current_user %>
     <%= render 'shared/navbar' %>
   <% end %>
-    <div class="container">
+    <%# <div class="container">
       <div class="row d-flex justify-content-around">
-        <div class="col-9">
+        <div class="col-9"> %>
           <%= render "layouts/messages"%>
           <%= yield %>
-        </div>
+       <%#  </div>
       </div>
     </div>
-
+ %>
     <!-- Optional JavaScript; choose one of the two! -->
 
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->

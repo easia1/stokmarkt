@@ -1,8 +1,18 @@
 class DashboardsController < ApplicationController
+    include DashboardsHelper
 
     def index
         redirect_to users_path if current_user.admin?
     end
-
-
+  
+    def add_balance
+        amount = params[:amount].to_d
+        user = User.find(current_user.id)
+        respond_to do |format|
+            if user.update(balance: user.balance + amount)
+                format.html { redirect_to root_path, notice: "You have added $#{amount} to your account" }
+                format.json { head :no_content }
+            end
+        end
+    end
 end
