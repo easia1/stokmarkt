@@ -7,7 +7,7 @@
 		<strong>Symbol: </strong> <%= @stock.ticker %>
 		<strong>Name: </strong> <%= @stock.name %>
 		<strong>Price: </strong> <%= @stock.last_price %>
-		<p><%= @stock %></p>
+		<p><%= @stock.inspect %></p>
 		<%= link_to buy_stock_path(:stock_ticker => @stock.ticker) do %>
             <button type="button" class="btn btn-success">Buy</button>
         <% end %>
