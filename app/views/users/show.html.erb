@@ -11,7 +11,7 @@
     Email: <%= @user.email %>
   </p>
   <p class="lead">
-    Balance: $<%= @user.balance %>
+    Balance: <%= number_to_currency(@user.balance) %>
   </p>
   <br/>
   <%= link_to 'Edit', edit_user_path(@user), class: "btn btn-secondary" %> 
