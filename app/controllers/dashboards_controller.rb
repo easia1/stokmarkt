@@ -4,8 +4,7 @@ class DashboardsController < ApplicationController
     def index
         redirect_to users_path if current_user.admin?
     end
-
-
+  
     def add_balance
         amount = params[:amount].to_d
         user = User.find(current_user.id)
@@ -16,5 +15,4 @@ class DashboardsController < ApplicationController
             end
         end
     end
-
 end
