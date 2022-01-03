@@ -13,7 +13,11 @@ Rails.application.routes.draw do
 
   # get 'my_portfolio', to: 'users#my_portfolio'
   get 'search_stock', to: 'stocks#search'
+  get 'show_stock', to: 'stocks#show'
+  get 'create_stock', to: 'stocks#create'
+  get "/stocks", to: 'stocks#index', as: 'stocks'
   get 'buy_stock', to: 'stocks#buy_stock'
+  get 'sell_stock', to: 'stocks#sell_stock'
 
   patch 'users/:id/change_status' => 'users#change_status', as: :change_status_user
 

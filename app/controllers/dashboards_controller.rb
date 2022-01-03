@@ -1,14 +1,10 @@
 class DashboardsController < ApplicationController
     include DashboardsHelper
+    include ActionView::Helpers::NumberHelper
 
     def index
         redirect_to users_path if current_user.admin?
-
-        client = IEX::Api::Client.new(publishable_token: Rails.application.credentials.iex_client[:sandbox_api_key],
-            endpoint: 'https://sandbox.iexapis.com/v1')
-
-		@trending_stocks = client.stock_market_list(:mostactive)
-
+        @stocks = Stock.where(user_id: current_user.id, quantity: 1..)
     end
   
     def add_balance
@@ -16,7 +12,7 @@ class DashboardsController < ApplicationController
         user = User.find(current_user.id)
         respond_to do |format|
             if user.update(balance: user.balance + amount)
-                format.html { redirect_to root_path, notice: "You have added $#{number_to_currency(amount)} to your account" }
+                format.html { redirect_to root_path, notice: "You have added #{number_to_currency(amount)} to your account" }
                 format.json { head :no_content }
             end
         end
