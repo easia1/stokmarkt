@@ -15,7 +15,7 @@
                     <%= text_field_tag :stock, params[:stock], placeholder: "Stock ticker symbol", autofocus: true, class: "form-control form-control-lg" %>
                 </div>
                 <div class="col-sm-3 no-left-padding">
-                    <%= button_tag type: :submit, class: "btn btn-success" do %>
+                    <%= button_tag type: :submit, class: "btn btn-success add-user" do %>
                         <%= fa_icon 'search 2x' %>
                     <% end %>
                 </div>
@@ -34,10 +34,11 @@
     <%= form_with url: dashboards_add_balance_path do |f| %>
         <p>
             <%= f.label :amount %><br/>
-            <%= f.number_field :amount, step: 0.01 %>
+            <%= f.number_field :amount, step: 0.01, class: "form-control" %>
         </p>
+        <br>
         <p>
-            <%= f.submit "Add balance" %>
+            <%= f.submit "Add balance", class: "btn btn-success add-user" %>
         </p>
     
     <% end %>

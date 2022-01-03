@@ -549,6 +549,16 @@ thead {
     margin-right: 10px;
 }
 
+.company-logo {
+    border-radius: 20px;
+    margin-right: 2rem;
+}
+
+.company-info {
+    display: flex;
+    align-items: center;
+}
+
 @media screen and (min-width: 768px) {
     .body-class {
         margin: calc(var(--header-height) + 1rem) 0 0 0;
