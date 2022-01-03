@@ -2,13 +2,13 @@
 	<%= render 'layouts/messages' %>
 </div>
 
-<% if @stock%>
+<% if @stock %>
 	<div class="card card-header results-block">
-		<strong>Symbol: </strong> <%= @stock.ticker %>
+		<strong>Symbol: </strong> <%= @stock.ticker.upcase %>
 		<strong>Name: </strong> <%= @stock.name %>
 		<strong>Price: </strong> <%= @stock.last_price %>
 		<p><%= @stock.inspect %></p>
-		<%= link_to show_stock_path(:stock_ticker => @stock.ticker) do %>
+		<%= link_to show_stock_path(:stock_ticker => @stock.ticker.upcase, :transaction => 'buy') do %>
             <button type="button" class="btn btn-success">Buy</button>
         <% end %>
 	</div>

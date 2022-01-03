@@ -29,6 +29,13 @@ class StocksController < ApplicationController
 	end
 
 	def show
+		if params[:transaction] == 'buy'
+			@transaction_path = buy_stock_path
+			@page_header = 'Buy Stock'
+		else
+			@transaction_path = sell_stock_path
+			@page_header = 'Sell Stock'
+		end
 		if params[:stock_ticker]
 			@stock = Stock.new_lookup(params[:stock_ticker])
 			@company_logo = "https://storage.googleapis.com/iex/api/logos/#{@stock.ticker.upcase}.png"
@@ -76,21 +83,19 @@ class StocksController < ApplicationController
 
 	def sell_stock
 		user = User.find(current_user.id)
-		existing_stock = Stock.find_by(:user_id => current_user.id, :ticker => params[:ticker])
+		existing_stock = Stock.find_by(:user_id => current_user.id, :ticker => params[:ticker], quantity: 1..)
 		total_amount = params[:quantity].to_i * params[:last_price].to_i
-		stock = Stock.new(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id)
-		if total_amount <= current_user.balance && params[:quantity].to_i > 0
-			if user.update(balance: user.balance - total_amount)
-				if existing_stock
-					existing_stock.update(quantity: existing_stock.quantity.to_i + params[:quantity].to_i)
-				else
-					stock.save
-				end
+		
+		if existing_stock && params[:quantity].to_i > 0 && params[:quantity].to_i <= existing_stock.quantity.to_i
+			if user.update(balance: user.balance + total_amount)
+				existing_stock.update(quantity: existing_stock.quantity.to_i - params[:quantity].to_i)
 				redirect_to root_path
-			end
+			end	
 		else
-			flash.now[:alert] = "You do not have sufficient funds"
-			redirect_to root_path
+			respond_to do |format|
+				format.html { redirect_to root_path, notice: "You do not have enough stocks" }
+				# format.json { head :no_content }
+			end
 		end	
 	end
 end
