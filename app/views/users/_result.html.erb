@@ -8,7 +8,7 @@
 		<strong>Name: </strong> <%= @stock.name %>
 		<strong>Price: </strong> <%= @stock.last_price %>
 		<p><%= @stock.inspect %></p>
-		<%= link_to buy_stock_path(:stock_ticker => @stock.ticker) do %>
+		<%= link_to show_stock_path(:stock_ticker => @stock.ticker) do %>
             <button type="button" class="btn btn-success">Buy</button>
         <% end %>
 	</div>

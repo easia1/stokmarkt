@@ -8,7 +8,7 @@
             <p><%= stock.symbol %></p>
             </div>
             <div class="user-button-container">
-                <%= link_to buy_stock_path(stock), class: "btn btn-success add-user" do %> 
+                <%= link_to show_stock_path(stock), class: "btn btn-success add-user" do %> 
                         <i class='bx bxs-cart' ></i> 
                 <% end %>
                 <%= link_to root_path, class: "btn btn-danger delete-user" do %> 

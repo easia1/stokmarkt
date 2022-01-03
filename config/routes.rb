@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   # get 'my_portfolio', to: 'users#my_portfolio'
   get 'search_stock', to: 'stocks#search'
-  get 'buy_stock', to: 'stocks#buy_stock'
+  get 'show_stock', to: 'stocks#show'
   get 'create_stock', to: 'stocks#create'
   get "/stocks", to: 'stocks#index', as: 'stocks'
 

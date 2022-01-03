@@ -28,7 +28,7 @@ class StocksController < ApplicationController
 		end
 	end
 
-	def buy_stock
+	def show
 		if params[:stock_ticker]
 			@stock = Stock.new_lookup(params[:stock_ticker])
 			@company_logo = "https://storage.googleapis.com/iex/api/logos/#{@stock.ticker.upcase}.png"
@@ -36,6 +36,7 @@ class StocksController < ApplicationController
 			client = IEX::Api::Client.new(publishable_token: Rails.application.credentials.iex_client[:sandbox_api_key],
 				endpoint: 'https://sandbox.iexapis.com/v1')
 			
+				
 			@symbol = params[:symbol]
 			@company_logo = "https://storage.googleapis.com/iex/api/logos/#{@symbol}.png"
 			@company_name = params[:company_name]
@@ -48,6 +49,10 @@ class StocksController < ApplicationController
 		stock = Stock.new(name: params[:name], ticker: params[:ticker], last_price: params[:last_price], quantity: params[:quantity])
 		stock.save
 		redirect_to root_path
+	end
+
+	def buy_stock
+
 	end
 
 end
