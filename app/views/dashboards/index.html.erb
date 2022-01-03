@@ -12,7 +12,7 @@
             <div class= "user-list-card">
                 <div>
                     <span class="user-list-card-name"><%= stock.name %></span>
-                <p><%= stock.ticker %></p>
+                <p><%= stock.ticker %> | <%= stock.quantity %> </p>
                 </div>
                 <div class="user-button-container">
                     <%= link_to root_path, class: "btn btn-success add-user" do %> 
@@ -24,7 +24,7 @@
                 </div>
             </div>
         <% end %>
-
+    </div>
 
 
 

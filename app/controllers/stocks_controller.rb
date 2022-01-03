@@ -53,12 +53,16 @@ class StocksController < ApplicationController
 
 	def buy_stock
 		user = User.find(current_user.id)
+		existing_stock = Stock.find_by(:user_id => current_user.id, :ticker => params[:ticker])
 		total_amount = params[:quantity].to_i * params[:last_price].to_i
 		stock = Stock.new(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id)
-		if total_amount <= current_user.balance
+		if total_amount <= current_user.balance && params[:quantity].to_i > 0
 			if user.update(balance: user.balance - total_amount)
-				#if Stock.where(user_id: current_user.id, ticker: params[:ticker]).any?
-				stock.save
+				if existing_stock
+					existing_stock.update(quantity: existing_stock.quantity.to_i + params[:quantity].to_i)
+				else
+					stock.save
+				end
 				redirect_to root_path
 			end
 		else
