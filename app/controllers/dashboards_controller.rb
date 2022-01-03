@@ -7,14 +7,23 @@ class DashboardsController < ApplicationController
         @stocks = Stock.where(user_id: current_user.id, quantity: 1..)
     end
   
+
     def add_balance
         amount = params[:amount].to_d
-        user = User.find(current_user.id)
-        respond_to do |format|
-            if user.update(balance: user.balance + amount)
-                format.html { redirect_to root_path, notice: "You have added #{number_to_currency(amount)} to your account" }
+        if amount > current_user.balance
+            user = User.find(current_user.id)
+            respond_to do |format|
+                if user.update(balance: user.balance + amount)
+                    format.html { redirect_to root_path, notice: "You have added #{number_to_currency(amount)} to your account" }
+                    format.json { head :no_content }
+                end
+            end
+        else
+            respond_to do |format|
+                format.html { redirect_to root_path, notice: "Invalid Amount" }
                 format.json { head :no_content }
             end
         end
+        
     end
 end
