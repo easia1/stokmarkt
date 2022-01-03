@@ -66,8 +66,10 @@ class StocksController < ApplicationController
 				redirect_to root_path
 			end
 		else
-			flash.now[:alert] = "You do not have sufficient funds"
-			redirect_to root_path
+			respond_to do |format|
+				format.html { redirect_to root_path, notice: "Invalid Quantity" }
+				# format.json { head :no_content }
+			end
 		end	
 	end
 end
