@@ -45,12 +45,13 @@ class StocksController < ApplicationController
 		end
 	end
 
-	def create
-		stock = Stock.new(name: params[:name], ticker: params[:ticker], last_price: params[:last_price], quantity: params[:quantity])
-		stock.save
-		redirect_to root_path
-	end
+	# def create
+	# 	stock = Stock.new(name: params[:name], ticker: params[:ticker], last_price: params[:last_price], quantity: params[:quantity])
+	# 	stock.save
+	# 	redirect_to root_path
+	# end
 
+	#! refactor
 	def buy_stock
 		user = User.find(current_user.id)
 		existing_stock = Stock.find_by(:user_id => current_user.id, :ticker => params[:ticker])
@@ -70,6 +71,26 @@ class StocksController < ApplicationController
 				format.html { redirect_to root_path, notice: "Invalid Quantity" }
 				# format.json { head :no_content }
 			end
+		end	
+	end
+
+	def sell_stock
+		user = User.find(current_user.id)
+		existing_stock = Stock.find_by(:user_id => current_user.id, :ticker => params[:ticker])
+		total_amount = params[:quantity].to_i * params[:last_price].to_i
+		stock = Stock.new(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id)
+		if total_amount <= current_user.balance && params[:quantity].to_i > 0
+			if user.update(balance: user.balance - total_amount)
+				if existing_stock
+					existing_stock.update(quantity: existing_stock.quantity.to_i + params[:quantity].to_i)
+				else
+					stock.save
+				end
+				redirect_to root_path
+			end
+		else
+			flash.now[:alert] = "You do not have sufficient funds"
+			redirect_to root_path
 		end	
 	end
 end

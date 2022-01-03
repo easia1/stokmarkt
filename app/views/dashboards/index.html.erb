@@ -15,7 +15,7 @@
                 <p><%= stock.ticker %> | <%= stock.quantity %> </p>
                 </div>
                 <div class="user-button-container">
-                    <%= link_to root_path, class: "btn btn-success add-user" do %> 
+                    <%= link_to show_stock_path(:stock_ticker => stock.ticker), class: "btn btn-success add-user" do %> 
                             <i class='bx bxs-cart' ></i> 
                     <% end %>
                     <%= link_to root_path, class: "btn btn-danger delete-user" do %> 
