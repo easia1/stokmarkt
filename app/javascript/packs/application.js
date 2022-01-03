@@ -33,7 +33,7 @@ document.addEventListener('turbolinks:load', function (event) {
         if (toggleSide && toggleHeader && nav && bodypd && headerpd) {
             toggleSide.addEventListener('click', () => {
                 // show navbar
-                nav.classList.toggle('show');
+                nav.classList.toggle('show-sidebar');
                 // change icon
                 toggleSide.classList.toggle('bx-x');
                 toggleHeader.classList.toggle('bx-x');
@@ -45,7 +45,7 @@ document.addEventListener('turbolinks:load', function (event) {
 
             toggleHeader.addEventListener('click', () => {
                 // show navbar
-                nav.classList.toggle('show');
+                nav.classList.toggle('show-sidebar');
                 // change icon
                 toggleSide.classList.toggle('bx-x');
                 toggleHeader.classList.toggle('bx-x');
@@ -65,16 +65,16 @@ document.addEventListener('turbolinks:load', function (event) {
         'header'
     );
 
-    /*===== LINK ACTIVE =====*/
-    const linkColor = document.querySelectorAll('.nav_link');
+    // /*===== LINK ACTIVE =====*/
+    // const linkColor = document.querySelectorAll('.nav_link');
 
-    function colorLink() {
-        if (linkColor) {
-            linkColor.forEach((l) => l.classList.remove('active'));
-            this.classList.add('active');
-        }
-    }
-    linkColor.forEach((l) => l.addEventListener('click', colorLink));
+    // function colorLink() {
+    //     if (linkColor) {
+    //         linkColor.forEach((l) => l.classList.remove('active'));
+    //         this.classList.add('active');
+    //     }
+    // }
+    // linkColor.forEach((l) => l.addEventListener('click', colorLink));
 
     // Your code to run since DOM is loaded and ready
 });

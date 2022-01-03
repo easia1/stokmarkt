@@ -1,12 +1,4 @@
 <h1>User dashboard</h1>
-<% if Time.now.hour >= 7 && Time.now.hour < 12 %>
-Good Morning <%= current_user.name %>!
-<% elsif Time.now.hour >= 12 && Time.now.hour < 6   %>
-Good Afternoon <%= current_user.name %>!
-<% else %>
-Good Evening <%= current_user.name %>!
-<% end %>
-
 
 <% if current_user.status == 'pending' %>
     <p>pending pa</p>
@@ -33,7 +25,7 @@ Good Evening <%= current_user.name %>!
     </div>
 
     <h2>Current Balance:</h2>
-    <p>$<%= current_user.balance %></p>
+    <p><%= number_to_currency(current_user.balance) %></p>
 
     <h2>Add Balance:</h2>
     <%= form_with url: dashboards_add_balance_path do |f| %>

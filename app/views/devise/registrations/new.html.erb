@@ -1,9 +1,16 @@
 <% if current_user && current_user.admin  %>
-  <h2>Add User</h2>
+  <h3>Add User</h3>
   <%= render "devise/shared/signup_form" %>
 <% elsif current_user && !current_user.admin %>
   <h2>Unable to access this page.</h2>
 <% else %>
-  <h2>Sign Up</h2>
-  <%= render "devise/shared/signup_form" %>
+  <div class="login-background">
+    <div class="login-container">
+      <div class="form-container form-group">
+        <h2>Sign Up</h2>
+        <%= render "devise/shared/signup_form" %>
+      </div>
+    </div>
+    <%= image_tag('signup.svg', class: "hero-logo")%>
+  </div>
 <% end %>
