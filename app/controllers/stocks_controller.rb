@@ -52,7 +52,18 @@ class StocksController < ApplicationController
 	end
 
 	def buy_stock
-
+		user = User.find(current_user.id)
+		total_amount = params[:quantity].to_i * params[:last_price].to_i
+		stock = Stock.new(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id)
+		if total_amount <= current_user.balance
+			if user.update(balance: user.balance - total_amount)
+				#if Stock.where(user_id: current_user.id, ticker: params[:ticker]).any?
+				stock.save
+				redirect_to root_path
+			end
+		else
+			flash.now[:alert] = "You do not have sufficient funds"
+			redirect_to root_path
+		end	
 	end
-
 end

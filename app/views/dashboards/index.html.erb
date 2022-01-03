@@ -7,6 +7,28 @@
     </div>
 <% elsif current_user.status == 'approved' %>
     <h1>My Portfolio</h1>
+    <div class= "user-list">
+        <% @stocks.each do |stock| %>
+            <div class= "user-list-card">
+                <div>
+                    <span class="user-list-card-name"><%= stock.name %></span>
+                <p><%= stock.ticker %></p>
+                </div>
+                <div class="user-button-container">
+                    <%= link_to root_path, class: "btn btn-success add-user" do %> 
+                            <i class='bx bxs-cart' ></i> 
+                    <% end %>
+                    <%= link_to root_path, class: "btn btn-danger delete-user" do %> 
+                            <i class='bx bxs-trash-alt' ></i> 
+                    <% end %>
+                </div>
+            </div>
+        <% end %>
+
+
+
+
+
     <div class='search-area'>
         <h3>Search Stocks</h3>
         <%= form_tag search_stock_path, remote: true, method: :get do %>
