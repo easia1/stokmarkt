@@ -1,0 +1,26 @@
+<h1>Trending Stocks</h1>
+
+<% @trending_stocks.each do |stock| %>
+<%#= link_to user_path(user) do %>
+	<div class= "user-list-card">
+		<div>
+			<span class="user-list-card-name"><%= stock.symbol %></span>
+			<p><%= stock.company_name %></p>
+			<p><%= stock.latest_price %></p>
+		</div>
+
+		<div class="user-button-container">
+			<%= link_to root_path, class: "btn btn-success edit-user" do %> 
+					<i class='bx bxs-edit' ></i> 
+			<% end %>
+			<%= link_to root_path, class: "btn btn-danger delete-user" do %> 
+					<i class='bx bxs-trash-alt' ></i> 
+			<% end %>
+		</div>
+	</div>
+<%# end %>
+<% end %>
+
+
+
+<%= @trending_stocks.inspect %>

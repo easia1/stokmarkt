@@ -3,6 +3,12 @@ class DashboardsController < ApplicationController
 
     def index
         redirect_to users_path if current_user.admin?
+
+        client = IEX::Api::Client.new(publishable_token: Rails.application.credentials.iex_client[:sandbox_api_key],
+            endpoint: 'https://sandbox.iexapis.com/v1')
+
+		@trending_stocks = client.stock_market_list(:mostactive)
+
     end
   
     def add_balance
