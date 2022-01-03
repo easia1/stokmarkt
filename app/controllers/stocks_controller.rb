@@ -36,12 +36,12 @@ class StocksController < ApplicationController
 			client = IEX::Api::Client.new(publishable_token: Rails.application.credentials.iex_client[:sandbox_api_key],
 				endpoint: 'https://sandbox.iexapis.com/v1')
 			
-				
-			@symbol = params[:symbol]
-			@company_logo = "https://storage.googleapis.com/iex/api/logos/#{@symbol}.png"
-			@company_name = params[:company_name]
+			@stock = Stock.new
+			@stock.ticker = params[:symbol]
+			@company_logo = "https://storage.googleapis.com/iex/api/logos/#{@stock.ticker}.png"
+			@stock.name = params[:company_name]
 			
-			@latest_price = params[:latest_price]
+			@stock.last_price = params[:latest_price]
 		end
 	end
 

@@ -1,6 +1,5 @@
 <h1>Buy Stock </h1>
 
-<% if @stock %>
   <div class="jumbotron user-info company-info">
     <img src="<%= @company_logo %>" class="company-logo" alt="">
     <div>
@@ -9,16 +8,6 @@
     <strong>Price: </strong> <%= @stock.last_price %>
     </div>
   </div>
-<% else %>
-  <div class="jumbotron user-info company-info">
-    <img src="<%= @company_logo %>" class="company-logo" alt="">
-    <div>
-    <h1 class="display-4"><%= @company_name %></h1>
-    <strong>Symbol: </strong> <%= @symbol %> |
-    <strong>Price: </strong> <%= @latest_price %>
-    </div>
-  </div>
-<% end %>
 
 <%= form_tag create_stock_path, method: :get do %>
     <div class="form-group row">
