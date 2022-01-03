@@ -364,6 +364,7 @@ thead {
     align-items: center;
     overflow: hidden;
     border: dashed 2px var(--darker-blue);
+    word-wrap: break-word;
 }
 
 .user-list-card {
@@ -396,6 +397,7 @@ thead {
 .user-list-card-blank p {
     font-size: larger;
     color: var(--darker-blue);
+    word-wrap: break-word;
 }
 
 .user-list-card-blank i {
