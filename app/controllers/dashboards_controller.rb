@@ -10,7 +10,7 @@ class DashboardsController < ApplicationController
 
     def add_balance
         amount = params[:amount].to_d
-        if amount > current_user.balance
+        if amount > 0
             user = User.find(current_user.id)
             respond_to do |format|
                 if user.update(balance: user.balance + amount)
