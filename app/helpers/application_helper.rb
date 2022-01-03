@@ -6,7 +6,7 @@ module ApplicationHelper
     def user_greeting(user)
         if Time.now.hour >= 7 && Time.now.hour < 12
             "Good Morning, #{user.name}!"
-        elsif Time.now.hour >= 12 && Time.now.hour < 6
+        elsif Time.now.hour >= 12 && Time.now.hour < 18
             "Good Afternoon, #{user.name}!"
         else
             "Good Evening, #{user.name}!"

@@ -10,7 +10,7 @@ class DashboardsController < ApplicationController
         user = User.find(current_user.id)
         respond_to do |format|
             if user.update(balance: user.balance + amount)
-                format.html { redirect_to root_path, notice: "You have added $#{amount} to your account" }
+                format.html { redirect_to root_path, notice: "You have added $#{number_to_currency(amount)} to your account" }
                 format.json { head :no_content }
             end
         end
