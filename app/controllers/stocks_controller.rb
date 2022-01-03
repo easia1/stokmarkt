@@ -71,6 +71,7 @@ class StocksController < ApplicationController
 				else
 					stock.save
 				end
+				Transaction.create(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id, transaction_type: 'buy', price: params[:last_price])
 				redirect_to root_path
 			end
 		else
@@ -89,6 +90,7 @@ class StocksController < ApplicationController
 		if existing_stock && params[:quantity].to_i > 0 && params[:quantity].to_i <= existing_stock.quantity.to_i
 			if user.update(balance: user.balance + total_amount)
 				existing_stock.update(quantity: existing_stock.quantity.to_i - params[:quantity].to_i)
+				Transaction.create(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id, transaction_type: 'sell', price: params[:last_price])
 				redirect_to root_path
 			end	
 		else

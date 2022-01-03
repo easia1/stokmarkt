@@ -284,10 +284,20 @@ p {
     top: 5%;
     left: 50%;
     margin-left: -150px;
-    width: 300px;
+    /* width: 300px; */
     z-index: 9999;
     border-radius: 25px;
     box-shadow: 0 1rem 1rem 0 rgba(2, 53, 60, 0.15);
+    animation: fadeIn 0.3s;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 .user-status {
@@ -329,7 +339,7 @@ p {
 }
 
 table {
-    background-color: white;
+    /* background-color: white; */
     border-radius: 10px;
     box-shadow: 0 0.8rem 1rem 0 rgba(99, 99, 99, 0.1);
     overflow: hidden;
@@ -342,6 +352,10 @@ thead {
 
 .table th {
     border-top: none;
+}
+
+tr {
+    background-color: white;
 }
 
 .user-list {
@@ -405,7 +419,8 @@ thead {
     color: var(--darker-blue);
 }
 
-.user-list-card:hover {
+.user-list-card:hover,
+tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.5);
 }
 
@@ -513,6 +528,10 @@ thead {
 .approve-user:hover,
 .add-user:hover {
     background-color: var(--darker-green);
+    color: var(--dark-color);
+}
+
+.delete-user:hover {
     color: var(--dark-color);
 }
 
