@@ -11,7 +11,7 @@
                         <div class= "user-list-card">
                             <div>
                                 <span class="user-list-card-name"><%= stock.name %>  (<%= stock.ticker %>)</span>
-                            <p>Quantity: <%= stock.quantity %> </p>
+                            <p>Shares: <%=  number_with_delimiter(stock.quantity, :delimiter => ',', :separator => '.') %> </p>
                             </div>
                             <div class="user-button-container">
                                 <%= link_to show_stock_path(:stock_ticker => stock.ticker, :transaction => 'buy'), class: "btn btn-success add-user" do %> 

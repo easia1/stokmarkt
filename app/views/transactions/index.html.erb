@@ -15,8 +15,8 @@
     <td><%= transaction.transaction_type.capitalize %></td>
     <td><%= transaction.name %></td>
     <td><%= transaction.ticker %></td>
-    <td><%= transaction.quantity %></td>
-    <td><%= transaction.price %></td>
+    <td><%= number_with_delimiter(transaction.quantity, :delimiter => ',', :separator => '.') %></td>
+    <td><%= number_to_currency(transaction.price) %></td>
     </tr>
     <% end %>
 

@@ -72,11 +72,15 @@ class StocksController < ApplicationController
 					stock.save
 				end
 				Transaction.create(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id, transaction_type: 'buy', price: params[:last_price])
-				redirect_to root_path
+				# redirect_to root_path
+				respond_to do |format|
+					format.html { redirect_to root_path, notice: "You have successfully bought #{params[:quantity]} shares of #{params[:name]} (#{params[:ticker]})" }
+					# format.json { head :no_content }
+				end
 			end
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: "Invalid Quantity" }
+				format.html { redirect_to root_path, alert: "Invalid Quantity" }
 				# format.json { head :no_content }
 			end
 		end	
@@ -95,7 +99,7 @@ class StocksController < ApplicationController
 			end	
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: "You do not have enough stocks" }
+				format.html { redirect_to root_path, alert: "You do not have enough stocks" }
 				# format.json { head :no_content }
 			end
 		end	

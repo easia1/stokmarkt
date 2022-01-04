@@ -25,8 +25,8 @@
     <% @trending_stocks.each do |stock|%>
         <div class= "user-list-card">
             <div>
-                <span class="user-list-card-name"><%= stock.company_name %></span>
-            <p><%= stock.symbol %></p>
+                <span class="user-list-card-name"><%= stock.company_name %> (<%= stock.symbol %>)</span>
+            <p><%= stock.change_percent_s %> | <%= number_to_currency(stock.latest_price)%>  per share </p>
             </div>
             <div class="user-button-container">
                 <%= link_to show_stock_path(:stock_ticker => stock.symbol, :transaction => 'buy'), class: "btn btn-success add-user" do %> 

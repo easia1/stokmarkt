@@ -568,9 +568,26 @@ tbody tr:hover {
     margin-right: 10px;
 }
 
+.card-company-logo-container {
+    overflow: hidden;
+    max-height: 50%;
+    max-width: 50%;
+    background: #02353c;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .company-logo {
     border-radius: 20px;
     margin-right: 2rem;
+}
+
+.company-logo-small {
+    /*     overflow: hidden;
+    max-height: 3rem;
+    max-width: 3rem;
+    width: 3rem; */
 }
 
 .company-info {
