@@ -71,11 +71,16 @@ class StocksController < ApplicationController
 				else
 					stock.save
 				end
-				redirect_to root_path
+				Transaction.create(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id, transaction_type: 'buy', price: params[:last_price])
+				# redirect_to root_path
+				respond_to do |format|
+					format.html { redirect_to root_path, notice: "You have successfully bought #{params[:quantity]} shares of #{params[:name]} (#{params[:ticker]})" }
+					# format.json { head :no_content }
+				end
 			end
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: "Invalid Quantity" }
+				format.html { redirect_to root_path, alert: "Invalid Quantity" }
 				# format.json { head :no_content }
 			end
 		end	
@@ -89,11 +94,12 @@ class StocksController < ApplicationController
 		if existing_stock && params[:quantity].to_i > 0 && params[:quantity].to_i <= existing_stock.quantity.to_i
 			if user.update(balance: user.balance + total_amount)
 				existing_stock.update(quantity: existing_stock.quantity.to_i - params[:quantity].to_i)
+				Transaction.create(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id, transaction_type: 'sell', price: params[:last_price])
 				redirect_to root_path
 			end	
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: "You do not have enough stocks" }
+				format.html { redirect_to root_path, alert: "You do not have enough stocks" }
 				# format.json { head :no_content }
 			end
 		end	

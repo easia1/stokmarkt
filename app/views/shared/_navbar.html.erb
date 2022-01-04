@@ -20,8 +20,9 @@
                 </div>
             <% else %>
                 <div class="nav_list"> 
-                    <%= link_to root_path, class: "nav_link #{active_class(root_path)}" do %> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">All Users</span> <% end %>
-                    <%= link_to stocks_path, class: "nav_link #{active_class(stocks_path)}" do %> <i class='bx bx-candles nav_icon'></i> <span class="nav_name">All Users</span> <% end %>
+                    <%= link_to root_path, class: "nav_link #{active_class(root_path)}" do %> <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Dashboard</span> <% end %>
+                    <%= link_to stocks_path, class: "nav_link #{active_class(stocks_path)}" do %> <i class='bx bx-candles nav_icon'></i> <span class="nav_name">Trending Stocks</span> <% end %>
+                    <%= link_to transactions_path, class: "nav_link #{active_class(transactions_path)}" do %> <i class='bx bx-history nav_icon'></i> <span class="nav_name">Transactions</span> <% end %>
                 </div>
             <% end %>
             </div> 
