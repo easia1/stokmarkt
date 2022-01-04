@@ -3,13 +3,16 @@
 </div>
 
 <% if @stock %>
-	<div class="card card-header results-block">
-		<strong>Symbol: </strong> <%= @stock.ticker.upcase %>
-		<strong>Name: </strong> <%= @stock.name %>
-		<strong>Price: </strong> <%= @stock.last_price %>
-		<p><%= @stock.inspect %></p>
-		<%= link_to show_stock_path(:stock_ticker => @stock.ticker.upcase, :transaction => 'buy') do %>
-            <button type="button" class="btn btn-success">Buy</button>
-        <% end %>
+	<div class="user-list">
+		<div class="user-list-card">
+			<div>
+				<span class="user-list-card-name"><%= @stock.name %> (<%= @stock.ticker %>)</span>
+				<p><%= number_to_currency(@stock.last_price)%>  per share </p>
+			</div>
+			<%= link_to show_stock_path(:stock_ticker => @stock.ticker.upcase, :transaction => 'buy') do %>
+				<button type="button" class="btn btn-success add-user">Buy</button>
+			<% end %>
+		</div>
+		
 	</div>
 <% end%>
