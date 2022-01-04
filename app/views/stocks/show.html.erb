@@ -27,9 +27,9 @@
                 <%= text_field_tag :quantity, params[:quantity], placeholder: "Quantity", autofocus: true, class: "form-control form-control-lg" %>
         </div>
         
-        <div class="col-sm-3 no-left-padding">
-                <%= button_tag type: :submit, class: "btn btn-success" do %>
-                        <%= fa_icon 'search 2x' %>
+        <div class="col-sm-3">
+                <%= button_tag type: :submit, class: "btn #{@button_class}" do %>
+                        <%= @button_text %>
                 <% end %>
         </div>
     </div>

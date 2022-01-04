@@ -32,9 +32,13 @@ class StocksController < ApplicationController
 		if params[:transaction] == 'buy'
 			@transaction_path = buy_stock_path
 			@page_header = 'Buy Stock'
+			@button_class = 'btn-success add-user'
+			@button_text = 'Buy'
 		else
 			@transaction_path = sell_stock_path
 			@page_header = 'Sell Stock'
+			@button_class = 'btn-danger delete-user'
+			@button_text = 'Sell'
 		end
 		if params[:stock_ticker]
 			@stock = Stock.new_lookup(params[:stock_ticker])
@@ -74,13 +78,13 @@ class StocksController < ApplicationController
 				Transaction.create(name: params[:name], ticker: params[:ticker], quantity: params[:quantity], user_id: current_user.id, transaction_type: 'buy', price: params[:last_price])
 				# redirect_to root_path
 				respond_to do |format|
-					format.html { redirect_to root_path, notice: "You have successfully bought #{params[:quantity]} shares of #{params[:name]} (#{params[:ticker]})" }
+					format.html { redirect_to root_path, notice: "You have successfully bought #{params[:quantity]} share(s) of #{params[:name]} (#{params[:ticker]})" }
 					# format.json { head :no_content }
 				end
 			end
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, alert: "Invalid Quantity" }
+				format.html { redirect_to root_path, alert: "Invalid quantity" }
 				# format.json { head :no_content }
 			end
 		end	
@@ -99,7 +103,7 @@ class StocksController < ApplicationController
 			end	
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, notice: "Invalid Quantity" }
+				format.html { redirect_to root_path, notice: "Invalid quantity" }
 				# format.json { head :no_content }
 			end
 		end	

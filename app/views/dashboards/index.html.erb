@@ -2,45 +2,56 @@
 
 
 <% if current_user.status == 'approved' %>
-    
+    <p><%= user_greeting(current_user)%></p>
         <div class="row">
             <div class="col">
-                <h3>My Portfolio</h3>
-                <div class= "user-list">
-                    <% @stocks.each do |stock| %>
-                        <div class= "user-list-card">
-                            <div>
-                                <span class="user-list-card-name"><%= stock.name %>  (<%= stock.ticker %>)</span>
-                            <p>Shares: <%=  number_with_delimiter(stock.quantity, :delimiter => ',', :separator => '.') %> </p>
+                <h3>Your Portfolio</h3>
+                <% if @stocks.any? %>
+                    <div class= "user-list">
+                        <% @stocks.each do |stock| %>
+                            <div class= "user-list-card">
+                                <div>
+                                    <span class="user-list-card-name"><%= stock.name %>  (<%= stock.ticker %>)</span>
+                                <p>Shares: <%=  number_with_delimiter(stock.quantity, :delimiter => ',', :separator => '.') %> </p>
+                                </div>
+                                <div class="user-button-container">
+                                    <%= link_to show_stock_path(:stock_ticker => stock.ticker, :transaction => 'buy'), class: "btn btn-success add-user" do %> 
+                                            Buy
+                                    <% end %>
+                                    <%= link_to show_stock_path(:stock_ticker => stock.ticker, :transaction => 'sell'), class: "btn btn-danger delete-user" do %> 
+                                            Sell
+                                    <% end %>
+                                </div>
                             </div>
-                            <div class="user-button-container">
-                                <%= link_to show_stock_path(:stock_ticker => stock.ticker, :transaction => 'buy'), class: "btn btn-success add-user" do %> 
-                                         Buy
-                                <% end %>
-                                <%= link_to show_stock_path(:stock_ticker => stock.ticker, :transaction => 'sell'), class: "btn btn-danger delete-user" do %> 
-                                        Sell
-                                <% end %>
-                            </div>
+                        <% end %>
+                    </div>
+                <% else %>
+                    <%= link_to stocks_path do %>
+                        <div class= "user-list-card-blank">
+                            <i class='bx bx-happy-beaming' ></i> 
+                            <p>You have no stocks yet. Buy some?</p>
                         </div>
                     <% end %>
-                </div>
+                <% end %>
+                
             </div>
             <div class="col">
-                <h3>Current Balance:</h3>
-                
-                <p><%= number_to_currency(current_user.balance) %></p>
-
-                <h3>Add Balance:</h3>
-                <%= form_with url: dashboards_add_balance_path do |f| %>
-                    <p>
-                        <%= f.label :amount %><br/>
-                        <%= f.number_field :amount, step: 0.01, class: "form-control" %>
-                    </p>
-                    <br>
-                    <p>
-                        <%= f.submit "Add balance", class: "btn btn-success add-user" %>
-                    </p>
-                <% end %>
+                <h3>Current Balance</h3>
+                <div class="user-balance-card">
+                    <h2><%= number_to_currency(current_user.balance) %></h2>
+                    <hr>
+                    <div>
+                        <h4>Add Balance</h4>
+                        <%= form_with url: dashboards_add_balance_path, class:"form-inline" do |f| %>
+                            <div class="form-group mb-2">
+                                <%= f.number_field :amount, step: 0.01, class: "form-control" %>
+                            </div>
+                            <div class="form-group mx-sm-3 mb-2">
+                                <%= f.submit "Add balance", class: "btn btn-success add-user" %>
+                            </div>
+                        <% end %>
+                    </div>
+                </div>
             </div>
         </div>
 
