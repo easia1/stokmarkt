@@ -20,7 +20,7 @@ class DashboardsController < ApplicationController
             end
         else
             respond_to do |format|
-                format.html { redirect_to root_path, notice: "Invalid Amount" }
+                format.html { redirect_to root_path, alert: "Invalid Amount" }
                 format.json { head :no_content }
             end
         end
