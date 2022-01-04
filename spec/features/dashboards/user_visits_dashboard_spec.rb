@@ -8,9 +8,8 @@ RSpec.feature "User visits dashboard page", :type => :feature do
   scenario "successfully" do
     visit authenticated_path
 
-    expect(page).to have_text("My Portfolio")
-    expect(page).to have_text("Current Balance:")
-    expect(page).to have_text("Add Balance:")
+    expect(page).to have_text("Your Portfolio")
+    expect(page).to have_text("Current Balance")
 
   end
 end
