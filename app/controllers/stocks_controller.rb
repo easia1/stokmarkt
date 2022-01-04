@@ -99,7 +99,7 @@ class StocksController < ApplicationController
 			end	
 		else
 			respond_to do |format|
-				format.html { redirect_to root_path, alert: "You do not have enough stocks" }
+				format.html { redirect_to root_path, notice: "Invalid Quantity" }
 				# format.json { head :no_content }
 			end
 		end	
