@@ -32,8 +32,6 @@ Live demo [_here_](http://stokmarkt.herokuapp.com/).
 ## Table of Contents
 
 -   [Features](#features)
--   [Getting Started](#getting-started)
--   [Tests](#running-the-tests)
 -   [Screenshots](#screenshots)
 -   [Authors](#authors)
 
