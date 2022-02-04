@@ -25,7 +25,7 @@ Things you may want to cover:
 
 # Stokmarkt 📈
 
-Binhi is an online database of native plants in the Philippines.
+A stock market app made using Ruby on Rails that allows the user to buy and sell stocks
 
 Live demo [_here_](http://stokmarkt.herokuapp.com/).
 
