@@ -29,6 +29,14 @@ A stock market app made using Ruby on Rails that allows the user to buy and sell
 
 Live demo [_here_](http://stokmarkt.herokuapp.com/).
 
+Demo accounts:
+- Admin
+    - Email: admin@test.com
+    - Password: test123
+- User (Trader)
+    - Email: test@test.com
+    - Password: test123
+
 ## Table of Contents
 
 -   [Features](#features)
